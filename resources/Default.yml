@@ -7,32 +7,43 @@
 #                       __/ |
 #                      |___/
 
-#Config Version
+#基础配置版本
 VERSION: 1.0.0
-#Default Config For GFly
+#插件默认配置
 GFly_Default:
-  #Show a tip about pLayer's flight permission | true/fasle
+  #是否启用飞行玩家聊天前缀
+  Fly_Player_Chat_Prefix: true
+  #当聊天前缀启用时，聊天前缀设置
+  Chat_Prefix: "[Flying]"
+  #是否在玩家进入服务器后向玩家发送一个Tip
   Show_Join_Tip: true
-  #The tip message: Flight Permission -> Yes
+  #当玩家拥有飞行权限时发送的Tip
   Join_Tip_Allow_Flight: 你拥有飞行权限，可以飞行
-  #The tip message: Flight Permission -> No
+  #当玩家没有飞行权限时发送的Tip
   Join_Tip_Not_Allow_Flight: 你没有飞行权限
-  #Show a tip when player have no permission break blocks in fly 
+  #当玩家在飞行中破环方块，但又没有破环权限时发送的Tip
   Not_Break_Blocks_Tip: You can't do this in fly mode!
-  #Auto in fly mode when player join server if he has flight permission
+  #当玩家飞行权限和其他相关权限发送变动时是否通知玩家
+  Permission_Change_Tip: true
+  #如果玩家拥有飞行权限，则在进入服务器后立即设置为可飞行状态（非飞行状态）
   Auto_In_fly: true
-  #Force all players to cancel flight permission | true/fasle
+  #?????强制关闭所有玩家飞行权限（此选项优先级最高）
   Force_Not_Allow_Flight: false
-  #Auto add new player's config, setting to false can help reduce the size of the configuration file | true/false
-  Auto_Player_Config: true
+  #自动添加新玩家到玩家配置文件（Players.yml）。当然可以设置为false来节省不必要的垃圾配置，听起来不错
+  #相应玩家的配置只会在Op设置相关权限时才会添加
+  #但还是建议使用true，因为仍在开发阶段。设置为false容易引起崩溃
+  Auto_Player_Config: false
+  #??????是否启用玩家配置文件（Players.yml）简洁化：如果玩家的权限与默认权限相同，则不会写入玩家配置文件。
+  #当然，如果你经常直接修改玩家配置文件，建议使用false
+  Reduction_mode: true
 
-#Default Config For Every New Player
+#配置玩家的默认飞行设置
 Each_Player_Default:
-  #Allow to fly | true/fasle
+  #允许飞行
   AllowFlight: false
-  # Allow to break block(s) when in flight | true/false
+  #允许飞行时破坏方块
   Allow_Break_Blocks: true
-  #Allow get damage from others when in flight | true/false
+  #玩家飞行时是否可以受到伤害
   Allow_Get_Damage: true
-  #Allow PVP when in flight | true/false
+  #飞行时是否可以攻击其他玩家
   Allow_PVP: false

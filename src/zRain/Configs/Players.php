@@ -27,8 +27,6 @@ class Players extends Config
     }
     /**
      * @description:Set up new player config   
-     * @param string     
-     * @return: void
      */
     public function newPlayerConfig(string $name): void
     {

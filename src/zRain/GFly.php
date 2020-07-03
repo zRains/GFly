@@ -44,14 +44,16 @@ class GFly extends PluginBase
         $playerData = $this->config->getNested("Players_Data");
         $playerList = [];
         foreach ($players as $name) {
-            if (array_key_exists($name, $playerData) && array_key_exists($mode, $this->CommandMap)) {
+            if (array_key_exists($name, $playerData)) {
                 $this->config->setNested("Players_Data." . $name . "." . $this->CommandMap[$mode], $stats);
-                $this->config->save();
                 array_push($playerList, TF::GREEN . $name . TF::WHITE);
             } else {
-                array_push($playerList, TF::RED . $name . TF::WHITE);
+                $this->config->newPlayerConfig($name);
+                $this->config->setNested("Players_Data." . $name . "." . $this->CommandMap[$mode], $stats);
+                array_push($playerList, TF::AQUA . $name . TF::WHITE);
             }
         }
+        $this->config->save();
         return $playerList;
     }
     /**
@@ -59,8 +61,16 @@ class GFly extends PluginBase
      */
     public function Player_Permission_Get(Player $player): array
     {
-        return $this->config->getNested("Players_Data." . $player->getName());
+        $Data = $this->config->getNested("Players_Data." . $player->getName());
+        if (!$Data) {
+            return $this->Defaultconfig->getNested("Each_Player_Default");
+        } else {
+            return $Data;
+        }
     }
+    /**
+     * @description: PLugin disable
+     */
     public function onDisable()
     {
         $this->getLogger()->info(Tf::RED . "插件已关闭");
