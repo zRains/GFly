@@ -14,11 +14,13 @@ GFly_Default:
   #Show a tip about pLayer's flight permission | true/fasle
   Show_Join_Tip: true
   #The tip message: Flight Permission -> Yes
-  Join_Tip_Allow_Flight: You Can Fly!
+  Join_Tip_Allow_Flight: 你拥有飞行权限，可以飞行
   #The tip message: Flight Permission -> No
-  Join_Tip_Not_Allow_Flight: You Can't Fly!
-  #Show a tip when player have no permission break blocks in fly
+  Join_Tip_Not_Allow_Flight: 你没有飞行权限
+  #Show a tip when player have no permission break blocks in fly 
   Not_Break_Blocks_Tip: You can't do this in fly mode!
+  #Auto in fly mode when player join server if he has flight permission
+  Auto_In_fly: true
   #Force all players to cancel flight permission | true/fasle
   Force_Not_Allow_Flight: false
   #Auto add new player's config, setting to false can help reduce the size of the configuration file | true/false

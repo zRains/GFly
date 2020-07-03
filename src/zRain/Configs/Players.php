@@ -36,7 +36,7 @@ class Players extends Config
         $this->save();
     }
 
-    
+
     /**
      * @description: Check player's flight permission
      */

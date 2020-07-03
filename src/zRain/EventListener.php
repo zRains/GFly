@@ -25,9 +25,20 @@ class EventListener implements Listener
     public function PlayerJoin(PlayerJoinEvent $e)
     {
         $player = $e->getPlayer();
-        $Auto_Player_Config = $this->plugin->Defaultconfig->getNested("GFly_Default.Auto_Player_Config");
-        if ($Auto_Player_Config && !array_key_exists($player->getName(), $this->plugin->config->get("Players_Data"))) {
+        $Join_Defaultconfig = $this->plugin->Defaultconfig->getNested("GFly_Default");
+        if ($Join_Defaultconfig["Auto_Player_Config"] && !array_key_exists($player->getName(), $this->plugin->config->get("Players_Data"))) {
             $this->plugin->config->newPlayerConfig($player->getName());
+        }
+        if ($Join_Defaultconfig["Auto_In_fly"]  && $this->plugin->Player_Permission_Get($player, "af")) {
+            $player->setAllowFlight(true);
+            if ($Join_Defaultconfig["Show_Join_Tip"]) {
+                $player->sendTip($this->MSG->MSG("success", $Join_Defaultconfig["Join_Tip_Allow_Flight"]));
+            }
+        } else {
+            $player->setAllowFlight(false);
+            if ($Join_Defaultconfig["Show_Join_Tip"]) {
+                $player->sendTip($this->MSG->MSG("success", $Join_Defaultconfig["Join_Tip_Not_Allow_Flight"]));
+            }
         }
     }
     public function PlayerBreakBlocks(BlockBreakEvent $e)
