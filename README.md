@@ -1,7 +1,7 @@
 GFly 
 ===
 
-#### ![example](https://img.shields.io/badge/version-1.0.0-brightgreen.svg) ![example](https://img.shields.io/badge/release-1.0.0-brightgreen.svg) 
+#### ![example](https://img.shields.io/badge/version-1.0.1-brightgreen.svg) ![example](https://img.shields.io/badge/release-1.0.1-brightgreen.svg) 
 
 这是一个PocketMine-MP插件。在服务器里可以使得不同玩家拥有飞行权限，可以用作vip用户的特权。目前功能还在完善中。
 
