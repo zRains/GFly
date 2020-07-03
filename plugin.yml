@@ -1,0 +1,8 @@
+name: GFly
+author: zRain
+version: 1.0.0
+description: Allows players to fly
+api: 3.0.0
+main: zRain\GFly
+
+
