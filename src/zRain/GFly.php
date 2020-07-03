@@ -57,10 +57,9 @@ class GFly extends PluginBase
     /**
      * @description: Return player's flight permission
      */
-    public function Player_Permission_Get(Player $player, ?string $type): bool
+    public function Player_Permission_Get(Player $player): array
     {
-        $type = $type ?: "af";
-        return $this->config->getNested("Players_Data." . $player->getName() . "." . $this->CommandMap[$type]);
+        return $this->config->getNested("Players_Data." . $player->getName());
     }
     public function onDisable()
     {

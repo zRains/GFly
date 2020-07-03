@@ -51,15 +51,23 @@ class Flyset extends Command
                         $sender->sendMessage($this->MSG->MSG("error", TF::RED . "请在游戏内使用"));
                         return false;
                     }
-                    if ($this->plugin->Player_Permission_Get($sender,NULL)) {
+                    if ($this->plugin->Player_Permission_Get($sender)["AllowFlight"]) {
                         $sender->setAllowFlight(true);
                         $sender->sendTip($this->MSG->MSG("info", TF::BLUE . "你现在可以飞行了"));
                     } else {
                         $sender->sendTip($this->MSG->MSG("error", TF::RED . "你还没有飞行权限"));
                     }
                     break;
-                case 'p':
-                    $this->Formdata["title"] = "test";
+                case 'i':
+                    if ($sender instanceof Player) {
+                        $Player_GFly_Permissions = $this->plugin->Player_Permission_Get($sender);
+                        foreach ($Player_GFly_Permissions as $key => $value) {
+                            $sender->sendMessage($this->MSG->MSG("info", $key . ": " . ($value? "开启" : "禁用")));
+                        }
+                    } else {
+                        $sender->sendMessage("请在游戏内使用");
+                    }
+
                     break;
                 default:
                     break;
