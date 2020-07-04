@@ -8,7 +8,7 @@
 #                      |___/
 
 #基础配置版本
-VERSION: 1.0.0
+VERSION: 1.0.2
 #插件默认配置
 GFly_Default:
   #是否启用飞行玩家聊天前缀
@@ -22,7 +22,7 @@ GFly_Default:
   #当玩家没有飞行权限时发送的Tip
   Join_Tip_Not_Allow_Flight: 你没有飞行权限
   #当玩家在飞行中破环方块，但又没有破环权限时发送的Tip
-  Not_Break_Blocks_Tip: You can't do this in fly mode!
+  Not_Break_Blocks_Tip: 在飞行特权下你不能破坏
   #当玩家飞行权限和其他相关权限发送变动时是否通知玩家
   Permission_Change_Tip: true
   #如果玩家拥有飞行权限，则在进入服务器后立即设置为可飞行状态（非飞行状态）

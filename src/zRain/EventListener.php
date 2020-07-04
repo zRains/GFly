@@ -6,6 +6,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as TF;
 
@@ -58,6 +59,23 @@ class EventListener implements Listener
         if ($player instanceof Player && $Default_Config["Fly_Player_Chat_Prefix"] && $player->isFlying()) {
             $e->setCancelled();
             $this->plugin->getServer()->broadcastMessage(TF::GREEN . $Default_Config["Chat_Prefix"] . TF::WHITE . " <" . $player->getName() . "> " . $e->getMessage());
+        }
+    }
+    public function EntityDanage(EntityDamageByEntityEvent $e)
+    {
+        $player = $e->getEntity();
+        $damager = $e->getDamager();
+        if ($player instanceof Player && $damager instanceof Player) {
+            if (!$player->isOp() && !$damager->isOp()) {
+                if ($player->isFlying() && !$this->plugin->Player_Permission_Get($player)["Allow_Get_Damage"]) {
+                    $e->setCancelled();
+                    $damager->sendTip($this->MSG->MSG("error", "此玩家飞行时不受攻击"));
+                }
+                if ($damager->isFlying() && !$this->plugin->Player_Permission_Get($damager)["Allow_PVP"]) {
+                    $e->setCancelled();
+                    $damager->sendTip($this->MSG->MSG("error", "飞行特权下您不能攻击"));
+                }
+            }
         }
     }
 }
